@@ -8,6 +8,7 @@
     "Features": "Features",
     "HeroFAQS": "FAQ",
     "GetMorphcoins": "MorphCoins erhalten",
+    "CreateContent": "Hilf mit bei der Bootstrap Academy",
     "WebShop": "Webshop"
   },
   "Headings": {
@@ -237,6 +238,7 @@
     "Webinar": "Webinar",
     "UpcomingEvents": "Kommende Veranstaltungen",
     "GetMorphcoins": "Alternativen",
+    "CreateContent": "Eigene Inhalte erstellen",
     "Description": "Beschreibung",
     "LearningGoals": "Lernziele",
     "Requirements": "Requirements",
@@ -448,6 +450,7 @@
     "WatchedCourses": "Hier sind deine zuletzt gesehenen Kurse. Setze deine Reise fort!",
     "MyCertificates": "Die Zertifikate, die du aus Prüfungen bekommen hast! Vielleicht sind es ja schon genügend um einen Job zu bekommen? Oder solltest du mehr sammeln?",
     "GetMorphcoins": "Du willst kein Geld bezahlen? Die Coins kannst du auch auf andere Weise erhalten",
+    "CreateContent": "Wie kann ich eigene Quizfragen, Challenges, Webinare oder Coaches erstellen?",
     "MoreComingSoon": "Mehr folgt bald...",
     "CreatedBy": "Erstellt von",
     "LastUpdated": "Zuletzt aktualisiert",
@@ -630,6 +633,28 @@
       "7": {
         "Heading": "Prüfer",
         "Body": "Bewirb dich und werde Prüfer. Du kannst gut einschätzen, wie gut jemand ist? Du kennst die Fragen, die alle aus der Reserve locken? Melde dich bei mir als Prüfer - du brauchst dazu nur den passenden Skill und ein paar softskills."
+      }
+    },
+    "OwnContent": {
+      "1": {
+        "Heading": "Quizfragen",
+        "Body": "Quizfragen bieten eine einfache Möglichkeit, Wissen zu vermitteln und gibt die Möglichkeit dieses auch zu testen.",
+        "XpAmount": "Level ??? erforderlich"
+      },
+      "2": {
+        "Heading": "Challenges",
+        "Body": "Mit Challenges kannst Du anderen Menschen auf der Bootstrap Academy Aufgaben stellen, die es gilt zu lösen.",
+        "XpAmount": "Level ??? erforderlich"
+      },
+      "3": {
+        "Heading": "Webinars",
+        "Body": "Teile Dein Wissen und Deine Fähigkeiten mit Anderen, indem Du ein Webinar hältst.",
+        "XpAmount": "Level 15 erforderlich"
+      },
+      "4": {
+        "Heading": "Coachings",
+        "Body": "Hilf Anderen individuell dabei, ihre Fähigkeiten zu verbessern.",
+        "XpAmount": "Level 45 erforderlich"
       }
     },
     "Filter": {
@@ -927,6 +952,7 @@
     "Here": "Hier",
     "GoToSignup": "Zur Anmeldung",
     "GetMorphcoins": "Erhalte Morphcoins",
+    "CreateContent": "Eigene Inhalte",
     "Calendar": "Kalender",
     "Jobs": "Jobs",
     "BackToDetails": "Zurück zu den Details",

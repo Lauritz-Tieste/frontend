@@ -86,6 +86,10 @@ export default {
         label: "Links.GetMorphcoins",
         pathname: "/morphcoins",
       },
+      {
+        label: "Links.CreateContent",
+        pathname: "/own-content",
+      },
     ];
 
     const validTill = computed(() => {

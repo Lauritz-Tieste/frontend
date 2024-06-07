@@ -8,6 +8,7 @@
     "Features": "Features",
     "HeroFAQS": "FAQs",
     "GetMorphcoins": "Get MorphCoins",
+    "CreateContent": "Help with the Bootstrap Academy",
     "WebShop": "Web Shop"
   },
 
@@ -235,6 +236,7 @@
     "Webinar": "Webinar",
     "UpcomingEvents": "Upcoming Events",
     "GetMorphcoins": "Alternative Ways",
+    "CreateContent": "Create your own content",
     "Description": "Description",
     "LearningGoals": "Learning Goals",
     "Requirements": "Requirements",
@@ -446,6 +448,7 @@
     "WatchedCourses": "Here are your previously watched courses. Continue your journey!",
     "MyCertificates": "The certificates you got by doing an exam! Maybe they are already good to get a job? Or should you get more?",
     "GetMorphcoins": "Don't want to pay? You can get coins by other ways",
+    "CreateContent": "How can I create my own quizzes, challenges, webinars or coaches?",
     "MoreComingSoon": "More coming soon...",
     "CreatedBy": "Created by",
     "LastUpdated": "Last Updated",
@@ -628,6 +631,28 @@
       "7": {
         "Heading": "Examiner",
         "Body": "Apply and become an examiner. You can guess how well some can code? You know all the questions to put someone to test? Contact me as an examiner - you only need the according skill and some soft skills"
+      }
+    },
+    "OwnContent": {
+      "1": {
+        "Heading": "Quiz questions",
+        "Body": "Quiz questions offer an easy way to share knowledge and give the opportunity to test it.",
+        "XpAmount": "Level ??? required"
+      },
+      "2": {
+        "Heading": "Challenges",
+        "Body": "With Challenges you can give other people on the Bootstrap Academy tasks to solve.",
+        "XpAmount": "Level ??? required"
+      },
+      "3": {
+        "Heading": "Webinars",
+        "Body": "Share your knowledge and skills with others by giving a webinar.",
+        "XpAmount": "Level 15 required"
+      },
+      "4": {
+        "Heading": "Coachings",
+        "Body": "Help others individually improve their skills.",
+        "XpAmount": "Level 45 required"
       }
     },
     "Filter": {
@@ -925,6 +950,7 @@
     "GotResetCode": "Got Reset Code?",
     "Here": "Here",
     "GetMorphcoins": "Get Morphcoins",
+    "CreateContent": "Own Content",
     "Calendar": "Calendar",
     "Jobs": "Jobs",
     "BackToDetails": "Back To Details",
