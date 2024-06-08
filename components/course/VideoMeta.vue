@@ -112,13 +112,13 @@ export default defineComponent({
         if (props.skillID == skill.skill) {
           skill.skills.forEach((subSkill: any) => {
             if (props.subSkillID == subSkill.skill && subSkill.level >= 5) {
-            totalLevel.value = subSkill.level;
-            eligible = true;
-          }
+              totalLevel.value = subSkill.level;
+              eligible = true;
+            }
             if (props.subSkillID == subSkill.skill && subSkill.level >= 20) {
-            totalLevel.value = subSkill.level;
-          }
-        });
+              totalLevel.value = subSkill.level;
+            }
+          });
         }
       });
       return eligible;
