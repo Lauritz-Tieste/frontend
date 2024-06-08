@@ -60,7 +60,7 @@ import {
   TrashIcon,
   EyeIcon,
   PencilSquareIcon,
-PlusCircleIcon,
+  PlusCircleIcon,
 } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
