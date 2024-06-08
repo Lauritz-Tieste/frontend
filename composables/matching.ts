@@ -73,9 +73,9 @@ export async function getMatchingsInTask(task_id: any) {
   }
 }
 
-export async function getMyMatchingsInTask(task_id: any, creator: any) {
+export async function getMyMatchingsInTask(task_id: any, creator: any = "") {
   try {
-    const response = await GET(`/challenges/tasks/${task_id}/matchings?creator=${creator}`);
+    const response = await GET(`/challenges/tasks/${task_id}/matchings${creator != "" ? `?creator=${creator}` : ""}`);
     const myMatchings = useMyMatchings();
     myMatchings.value = response;
 

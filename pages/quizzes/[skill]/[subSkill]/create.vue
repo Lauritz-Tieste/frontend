@@ -1,38 +1,54 @@
 <template>
   <section
-    class="grid-auto gap-card container h-screen-inner min pb-container pt-container grid-rows-[auto_auto_1fr] grid place-items-center"
-  >
+    class="grid-auto gap-card container h-screen-inner min pb-container pt-container grid-rows-[auto_auto_1fr] grid place-items-center">
     <section class="flex gap-3 items-center justify-end mb-3">
-      <InputButtonToggle
-        v-model="selectedTab"
-        :mobile-responsive="false"
-        :buttonOptions="toggleButtonOptions"
-        smInMobile
-      />
+      <InputButtonToggle v-model="selectedTab" :mobile-responsive="false" :buttonOptions="toggleButtonOptions"
+        smInMobile />
     </section>
-    <section v-if="selectedTab == 0" class="container-form max-w-4xl">
-      <QuizSubTaskListEditable :quizzes="quizzes" :taskId="quizId" />
-    </section>
-
-    <section v-if="selectedTab == 1" class="container-form max-w-4xl">
-      <LazyMatchingEditableList :matchings="myMatchings" :taskId="quizId" />
-    </section>
-    <section v-if="selectedTab == 2" class="container-form max-w-4xl">
-      <LazyCodingChallengeEditableList
-        :challengeId="quizId"
-        :codingChallenges="codingChallenges"
-      />
+    <section class="max-w-4xl w-full">
+      <div class="flex justify-center">
+        <div class="max-w-xl">
+          <h4 class="text-heading-4 text-center mb-2 text-accent font-bold" v-if="lectureName">
+            {{ $t("Headings.CreateForLecture",
+              {
+                "placeholder": selectedTab == 0 ?
+                  $t("Headings.QuizQuestions") :
+                  selectedTab == 1
+                    ? $t("Headings.Matchings")
+                    : $t("Headings.Challenges")
+              }) }}
+          </h4>
+          <h2 class="text-heading-2 text-center mb-4" v-if="lectureName">
+            {{ lectureName }}
+          </h2>
+          <p v-if="!user?.admin" class="text-warning text-center mb-12">
+            {{ t("Body.OnlySeeContentCreatedYourself") }}
+          </p>
+          <div v-else class="mb-12" />
+        </div>
+      </div>
+      <section v-if="selectedTab == 0" class="container-form max-w-4xl">
+        <QuizSubTaskListEditable :quizzes="quizzes" :taskId="quizId" />
+      </section>
+      <section v-if="selectedTab == 1" class="container-form max-w-4xl">
+        <LazyMatchingEditableList :matchings="myMatchings" :taskId="quizId" />
+      </section>
+      <section v-if="selectedTab == 2" class="container-form max-w-4xl">
+        <LazyCodingChallengeEditableList :challengeId="quizId" :codingChallenges="codingChallenges" />
+      </section>
     </section>
   </section>
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import { getSubTasksInQuiz, useSubTasksInQuiz } from "~~/composables/quizzes";
 definePageMeta({
   layout: "inner",
   middleware: ["auth"],
 });
 
+const { t } = useI18n();
 const route = useRoute();
 const sectionId = ref();
 const courseId = ref();
@@ -45,6 +61,7 @@ const user: any = useUser();
 const quizzes = useSubTasksInQuiz();
 const myMatchings = useMyMatchings();
 const codingChallenges = useAllCodingChallengesInATask();
+const course = useCourse();
 
 const toggleButtonOptions = [
   {
@@ -57,6 +74,10 @@ const toggleButtonOptions = [
     name: "Headings.Challenges",
   },
 ];
+
+const lectureName = computed(() => {
+  return course.value.sections?.find((section) => section.id === sectionId.value)?.lectures?.find((lecture) => lecture.id === lectureId.value)?.title;
+});
 
 watch(
   () => selectedTab.value,
@@ -92,9 +113,10 @@ onMounted(async () => {
     openSnackbar("error", error.data.detail);
   }
 
-  await getSubTasksInQuiz(quizId.value, user?.value.id ?? "");
-  await getAllCodingChallengesInATask(quizId.value, user?.value.id ?? "");
-  await getMyMatchingsInTask(quizId.value, user?.value.id ?? "");
+  await getSubTasksInQuiz(quizId.value, user?.value.admin ? undefined : user?.value.id);
+  await getAllCodingChallengesInATask(quizId.value, user?.value.admin ? undefined : user?.value.id);
+  await getMyMatchingsInTask(quizId.value, user?.value.admin ? undefined : user?.value.id);
+  await getCourseByID(courseId.value);
   loading.value = false;
 });
 </script>

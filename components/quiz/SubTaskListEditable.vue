@@ -1,7 +1,7 @@
 <template>
   <div>
-    <InputBtn class="my-7" full @click="openDialogAndAddNew()">
-      {{ t("Buttons.AddNew") }}
+    <InputBtn class="my-7" full @click="openDialogAndAddNew()" :icon="PlusCircleIcon">
+      {{ t("Buttons.CreateQuiz") }}
     </InputBtn>
     <section v-if="quizzes?.length">
       <div
@@ -37,7 +37,7 @@
       class="border border-accent rounded-md w-full p-5 text-xl text-center"
       v-else
     >
-      {{ t("Headings.EmptyQuizzes") }}
+      {{ t("Headings.EmptyListInLecture", {"placeholder": t("Headings.QuizQuestions")}) }}
     </p>
     <div>
       <DialogSlot
@@ -60,6 +60,7 @@ import {
   TrashIcon,
   EyeIcon,
   PencilSquareIcon,
+PlusCircleIcon,
 } from "@heroicons/vue/24/outline";
 
 const props = defineProps({

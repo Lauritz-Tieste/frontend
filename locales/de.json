@@ -17,7 +17,9 @@
     "LabelForMatchings": "Beschriftungen für Matchings",
     "NoteCannotEditMatching": "Matching bearbeiten",
     "DeleteMatching": "Matching löschen",
-    "EmptyMatchings": "Leere Matchings",
+    "EmptyListInLecture": "Für diese Vorlesung wurden keine {placeholder} gefunden",
+    "EmptyMatchings": "Für diese Vorlesung wurden keine Matchings gefunden",
+    "CreateForLecture": "{placeholder} für Lektion erstellen",
     "NumberOfMatchings": "Anzahl der Matchings",
     "One": "Eins",
     "TwoMatchings": "Zwei Matchings",
@@ -117,7 +119,6 @@
     "Other": "Andere",
     "Dislike": "Nicht gefallen",
     "UnlockCodingChallenge": "Kaufe eine Coding challenge, um sie freizuschalten",
-    "EmptyQuizzes": "Für diese Vorlesung wurde kein Quiz gefunden",
     "NextSubTasksLocation": "Die nächsten Quizze findest du in den Vorlesungen zu: ",
     "NoMoreSubTasksInThisCourse": "In diesem Kurs gibt es keine weiteren Quizze",
     "EmptyCodingChallenge": "Für diese Vorlesung wurde keine Programmieraufgabe gefunden",
@@ -371,6 +372,7 @@
     "NotYetUnlocked": "Noch nicht freigeschaltet"
   },
   "Body": {
+    "OnlySeeContentCreatedYourself": "Du kannst nur Inhalte sehen, die du selbst erstellt hast.",
     "DeleteMatching": "Sind Sie sicher, dass Sie dieses Matching löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
     "WhyWeUseTests": "Die Zahlen, die du beim Erstellen oder Ändern einer Coding - Challenge eingibst, sind einfach die Anzahl der statischen/zufälligen Testfälle, anhand derer die Lösung des Benutzers getestet werden soll. Wenn ich beispielsweise static_tests=5 und random_tests=3 setze, werden für jede Übermittlung 5 statische Testfälle und 3 zufällige Testfälle generiert, anhand derer die Eingabe des Lösenden getestet wird",
     "NoteCannotEditQuiz": "Sobald ein Quiz erstellt wurde, kannst du es nicht mehr bearbeiten. Du kannst es aber löschen und neu erstellen.",
