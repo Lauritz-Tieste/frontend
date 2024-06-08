@@ -39,6 +39,11 @@
         >
           <Btn secondary sm>{{ t("Buttons.AddTask") }}</Btn>
         </NuxtLink>
+        <NuxtLink v-else to="/own-content">
+          <Tooltip heading="Headings.NotYetUnlocked" content="Body.YouHaveToReachLevel">
+            <Btn secondary sm :icon="LockClosedIcon">{{ t("Buttons.AddTask") }}</Btn>
+          </Tooltip>
+        </NuxtLink>
       </template>
 
       <Btn
@@ -73,12 +78,13 @@
 <script lang="ts">
 import { useI18n } from "vue-i18n";
 import { defineComponent} from "vue";
-import { CheckIcon, CheckBadgeIcon } from "@heroicons/vue/24/solid";
+import { CheckIcon, CheckBadgeIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
 
 export default defineComponent({
   components: {
     CheckIcon,
     CheckBadgeIcon,
+    LockClosedIcon
   },
   props: {
     course: { type: Object as PropType<any>, default: null },
@@ -106,13 +112,13 @@ export default defineComponent({
         if (props.skillID == skill.skill) {
           skill.skills.forEach((subSkill: any) => {
             if (props.subSkillID == subSkill.skill && subSkill.level >= 5) {
-              totalLevel.value = subSkill.level;
-              eligible = true;
-            }
+            totalLevel.value = subSkill.level;
+            eligible = true;
+          }
             if (props.subSkillID == subSkill.skill && subSkill.level >= 20) {
-              totalLevel.value = subSkill.level;
-            }
-          });
+            totalLevel.value = subSkill.level;
+          }
+        });
         }
       });
       return eligible;
@@ -170,6 +176,7 @@ export default defineComponent({
       user,
       canCreate,
       totalLevel,
+      LockClosedIcon,
     };
   },
 });

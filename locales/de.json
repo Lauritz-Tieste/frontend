@@ -367,7 +367,8 @@
     "Summary": "Zusammenfassung",
     "CreationDate": "Erstellungsdatum",
     "EmptySubtasks" : "In dieser Vorlesung gibt es noch keine Quizze.",
-    "MyAccount": "Mein Konto"
+    "MyAccount": "Mein Konto",
+    "NotYetUnlocked": "Noch nicht freigeschaltet"
   },
   "Body": {
     "DeleteMatching": "Sind Sie sicher, dass Sie dieses Matching löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -509,7 +510,8 @@
     "IncreasedSecurity": "Erhöhte Sicherheit",
     "NoMoreIncreaseSecurity": "Keine erhöhte Sicherheit mehr",
     "ExcitingUpdates": "spannende Neuigkeiten und Updates",
-    "NoMoreExcitingUpdates": "keine spannende Neuigkeiten und Updates mehr"
+    "NoMoreExcitingUpdates": "keine spannende Neuigkeiten und Updates mehr",
+    "YouHaveToReachLevel": "Du musst ein bestimmtes Level erreichen, um Aufgaben erstellen zu können. Klicke, um mehr zu erfahren."
   },
   "AltAttributes": {
     "BootstrapAcademyLogo": "Bootstrap Academy Logo",
