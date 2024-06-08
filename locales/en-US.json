@@ -368,7 +368,8 @@
     "CreationDate": "Creation date",
     "EmptySubtasks" : "In this lecture, there are no quizzes yet.",
     "MyAccount": "My Account",
-    "NotYetUnlocked": "Not yet unlocked"
+    "NotYetUnlocked": "Not yet unlocked",
+    "CreateOwnQuizQuestions": "Create your own quiz questions"
   },
   "Body": {
     "OnlySeeContentCreatedYourself": "You can only see content that you have created yourself.",
@@ -511,7 +512,8 @@
     "NoMoreIncreaseSecurity": "No more increased security",
     "ExcitingUpdates": "Exciting news and updates",
     "NoMoreExcitingUpdates": "No more exciting news and updates",
-    "YouHaveToReachLevel": "You must reach a certain level to be able to create tasks. Click to find out more."
+    "YouHaveToReachLevel": "You must reach a certain level to be able to create tasks. Click to find out more.",
+    "ClickToFindOutMore": "Click to find out more"
   },
   "AltAttributes": {
     "BootstrapAcademyLogo": "Bootstrap Academy logo",

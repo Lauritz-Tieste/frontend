@@ -70,6 +70,10 @@
                 :data="quiz"
                 @click="solveThis(quiz)"
               />
+              <NuxtLink class="relative box style-box border-2 border-dashed border-body w-full cursor-pointer max-h-fit" to="/own-content">
+                <h3 class="text-heading-4 clamp line-2">{{ t("Headings.CreateOwnQuizQuestions") }}</h3>
+                <p class="text-body-2">{{ t("Body.ClickToFindOutMore") }}</p>
+              </NuxtLink>
             </div>
           </template>
         </aside>

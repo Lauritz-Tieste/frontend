@@ -369,7 +369,8 @@
     "CreationDate": "Erstellungsdatum",
     "EmptySubtasks" : "In dieser Vorlesung gibt es noch keine Quizze.",
     "MyAccount": "Mein Konto",
-    "NotYetUnlocked": "Noch nicht freigeschaltet"
+    "NotYetUnlocked": "Noch nicht freigeschaltet",
+    "CreateOwnQuizQuestions": "Erstelle Deine eigenen Quizfragen"
   },
   "Body": {
     "OnlySeeContentCreatedYourself": "Du kannst nur Inhalte sehen, die du selbst erstellt hast.",
@@ -513,7 +514,8 @@
     "NoMoreIncreaseSecurity": "Keine erhöhte Sicherheit mehr",
     "ExcitingUpdates": "spannende Neuigkeiten und Updates",
     "NoMoreExcitingUpdates": "keine spannende Neuigkeiten und Updates mehr",
-    "YouHaveToReachLevel": "Du musst ein bestimmtes Level erreichen, um Aufgaben erstellen zu können. Klicke, um mehr zu erfahren."
+    "YouHaveToReachLevel": "Du musst ein bestimmtes Level erreichen, um Aufgaben erstellen zu können. Klicke, um mehr zu erfahren.",
+    "ClickToFindOutMore": "Klicke, um mehr zu erfahren"
   },
   "AltAttributes": {
     "BootstrapAcademyLogo": "Bootstrap Academy Logo",
