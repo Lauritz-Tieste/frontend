@@ -370,7 +370,8 @@
     "EmptySubtasks" : "In dieser Vorlesung gibt es noch keine Quizze.",
     "MyAccount": "Mein Konto",
     "NotYetUnlocked": "Noch nicht freigeschaltet",
-    "CreateOwnQuizQuestions": "Erstelle Deine eigenen Quizfragen"
+    "CreateOwnQuizQuestions": "Erstelle Deine eigenen Quizfragen",
+    "AnswerOption": "Antwort-Möglichkeit"
   },
   "Body": {
     "OnlySeeContentCreatedYourself": "Du kannst nur Inhalte sehen, die du selbst erstellt hast.",
@@ -774,7 +775,7 @@
     "MFACode": "6-stelliger MFA-Code",
     "RecoveryCode": "Wiederherstellungscode",
     "RegistrationCode": "Registrierungscode",
-    "AnswerOption": "Antwort-Möglichkeit"
+    "AnswerOption": "Antwort-Möglichkeit {number}"
   },
   "Buttons": {
     "Matching": "Matching",
@@ -914,7 +915,8 @@
     "CalendarNextMonth": "Nächster Monat",
     "CalendarPrevMonth": "Vorheriger Monat",
     "MoreEventInfo": "Mehr Infos",
-    "LearnMore": "Mehr erfahren"
+    "LearnMore": "Mehr erfahren",
+    "AnswerOption": "Antwort-Möglichkeit"
   },
   "Links": {
     "LeaderBoard": "Bestenliste",
@@ -1160,7 +1162,8 @@
     "MFANotEnabled": "MFA ist nicht aktiviert",
     "PasswordResetFailed": "Kennwort kann nicht zurückgesetzt werden. Bitte probier es später erneut.",
     "InvalidCode": "Dieser Code ist ungültig.",
-    "ProviderNotFound": "Dieser Anbieter kann nicht gefunden werden."
+    "ProviderNotFound": "Dieser Anbieter kann nicht gefunden werden.",
+    "FillCurrentOption": "Bitte fülle zuerst die aktuellen Optionen aus, bevor du eine neue Option hinzufügst."
   },
   "Months": {
     "January": "Januar",

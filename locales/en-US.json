@@ -369,7 +369,8 @@
     "EmptySubtasks" : "In this lecture, there are no quizzes yet.",
     "MyAccount": "My Account",
     "NotYetUnlocked": "Not yet unlocked",
-    "CreateOwnQuizQuestions": "Create your own quiz questions"
+    "CreateOwnQuizQuestions": "Create your own quiz questions",
+    "AnswerOption": "Answer Option"
   },
   "Body": {
     "OnlySeeContentCreatedYourself": "You can only see content that you have created yourself.",
@@ -772,7 +773,7 @@
     "MFACode": "MFA 6 digit Code",
     "RecoveryCode": "Recovery Code",
     "RegistrationCode": "Registration Code",
-    "AnswerOption": "Answer Option"
+    "AnswerOption": "Answer Option {number}"
   },
   "Buttons": {
     "Matching": "Matching",
@@ -916,7 +917,8 @@
     "CalendarNextMonth": "Next month",
     "CalendarPrevMonth": "Previous month",
     "MoreEventInfo": "More info",
-    "LearnMore": "Learn More"
+    "LearnMore": "Learn More",
+    "AnswerOption": "Answer Option"
   },
   "Links": {
     "LeaderBoard": "LeaderBoard",
@@ -1157,7 +1159,8 @@
     "MFANotEnabled": "MFA is not enabled",
     "PasswordResetFailed": "Unable to reset password. Please try again later.",
     "InvalidCode": "This code is invalid. Please use a valid one",
-    "ProviderNotFound": "Unable to find this provider. Please select another one."
+    "ProviderNotFound": "Unable to find this provider. Please select another one.",
+    "FillCurrentOption": "Please fill current option first before adding new option."
   },
   "Months": {
     "January": "January",

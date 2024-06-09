@@ -26,7 +26,9 @@
         :class="canEdit ? '' : 'pointer-events-none opacity-60'"
         @click="onclickAddOption"
         class="w-fit self-end"
-        >Add Option</Btn
+        :icon="PlusCircleIcon"
+        secondary
+        >{{ t("Buttons.AnswerOption") }}</Btn
       >
 
       <article
@@ -36,7 +38,7 @@
         :key="option?.id ?? i"
       >
         <Input
-          :label="t('Inputs.Option')"
+          :label="t('Inputs.AnswerOption', { number: i + 1 })"
           :placeholder="option?.placeholder"
           v-model="option.answer"
           @valid="option.valid = $event"
@@ -62,7 +64,7 @@
     </form>
     <InputBtn
       :loading="form.submitting"
-      class="self-center"
+      class="self-center mb-6"
       @click="onclickSubmitForm()"
       mt
       v-if="!!user?.admin || !!!data"
@@ -78,7 +80,7 @@ import { defineComponent, ref } from "vue";
 import type { PropType } from "vue";
 import { useI18n } from "vue-i18n";
 import type { IForm } from "~/types/form";
-import { XMarkIcon } from "@heroicons/vue/24/solid";
+import { XMarkIcon, PlusCircleIcon } from "@heroicons/vue/24/solid";
 import {
   updateSubTaskInQuizForUser,
   updateSubTaskInQuizForAdmin,
@@ -86,7 +88,7 @@ import {
 } from "~~/composables/quizzes";
 
 export default defineComponent({
-  components: { XMarkIcon },
+  components: { XMarkIcon, PlusCircleIcon },
   props: {
     data: { type: Object, default: null },
     taskId: { type: String, default: null },
@@ -197,7 +199,7 @@ export default defineComponent({
       if (!isAllowed) {
         openSnackbar(
           "error",
-          "Please fill current option first before adding new option."
+          "Error.FillCurrentOption"
         );
         return;
       }
@@ -207,6 +209,7 @@ export default defineComponent({
         valid: false,
         rules: [(v: string) => !!v || "Error.InputEmpty_Inputs.Option"],
         correct: false,
+        placeholder: "Headings.AnswerOption",
       });
     }
 
@@ -448,6 +451,7 @@ export default defineComponent({
       onclickAddOption,
       options,
       XMarkIcon,
+      PlusCircleIcon,
       onclickRemoveOption,
       selectedQuestionType,
       setOptionCorrect,
