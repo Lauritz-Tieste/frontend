@@ -25,7 +25,7 @@
       <div class="md:flex justify-end items-center md:gap-4">
         <div class="flex flex-col pb-6">
           <p class="text-body-2 text-body font-body mb-2">
-            Neue Antwortoption hinzufügen
+            {{ t("Headings.AddNewAnswerOption") }}
           </p>
           <Btn
             :class="canEdit ? '' : 'pointer-events-none opacity-60'"
@@ -36,8 +36,8 @@
           >
         </div>
         <Input
-          label="XP for the Quiz"
-          placeholder="XP for the Quiz"
+          :label="t('Inputs.XPForQuiz')"
+          :placeholder="t('Inputs.XPForQuiz')"
           v-model="form.xp.value"
           :class="canEdit ? '' : 'pointer-events-none opacity-60'"
           @valid="form.xp.valid = $event"
@@ -142,7 +142,7 @@ export default defineComponent({
       xp: {
         valid: false,
         value: defaultQuestionXP,
-        rules: [(v: string) => !!v || "Error.InputEmpty_Inputs.XP"],
+        rules: [(v: string) => !!v || "Error.InputEmpty_Inputs.XPForQuiz"],
       },
 
       submitting: false,

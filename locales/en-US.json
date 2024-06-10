@@ -370,7 +370,8 @@
     "MyAccount": "My Account",
     "NotYetUnlocked": "Not yet unlocked",
     "CreateOwnQuizQuestions": "Create your own quiz questions",
-    "AnswerOption": "Answer Option"
+    "AnswerOption": "Answer Option",
+    "AddNewAnswerOption": "Add new answer option"
   },
   "Body": {
     "OnlySeeContentCreatedYourself": "You can only see content that you have created yourself.",
@@ -773,7 +774,8 @@
     "MFACode": "MFA 6 digit Code",
     "RecoveryCode": "Recovery Code",
     "RegistrationCode": "Registration Code",
-    "AnswerOption": "Answer Option {number}"
+    "AnswerOption": "Answer Option {number}",
+    "XPForQuiz": "XP for Quiz"
   },
   "Buttons": {
     "Matching": "Matching",
