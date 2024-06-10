@@ -13,28 +13,16 @@
       @submit.prevent="onclickSubmitForm()"
       ref="refForm"
     >
-      <Input
-        :label="t('Inputs.Question')"
-        :placeholder="'Body.QuizDummyQuestion'"
-        v-model="form.question.value"
-        :class="canEdit ? '' : 'pointer-events-none opacity-60'"
-        @valid="form.question.valid = $event"
-        :rules="form.question.rules"
-      />
-
-      <div class="md:flex justify-end items-center md:gap-4">
-        <div class="flex flex-col pb-6">
-          <p class="text-body-2 text-body font-body mb-2">
-            {{ t("Headings.AddNewAnswerOption") }}
-          </p>
-          <Btn
-            :class="canEdit ? '' : 'pointer-events-none opacity-60'"
-            @click="onclickAddOption"
-            :icon="PlusCircleIcon"
-            secondary
-            >{{ t("Buttons.AnswerOption") }}</Btn
-          >
-        </div>
+      <div class="flex items-center">
+        <Input
+          :label="t('Inputs.Question')"
+          :placeholder="'Body.QuizDummyQuestion'"
+          v-model="form.question.value"
+          :class="canEdit ? '' : 'pointer-events-none opacity-60'"
+          class="w-full mr-6"
+          @valid="form.question.valid = $event"
+          :rules="form.question.rules"
+        />
         <Input
           :label="t('Inputs.XPForQuiz')"
           :placeholder="t('Inputs.XPForQuiz')"
@@ -45,7 +33,7 @@
           type="number"
         />
 
-        <hr class="mb-4" />
+        <hr class="my-4" />
       </div>
 
       <article
@@ -78,6 +66,16 @@
           @click="onclickRemoveOption(i)"
         />
       </article>
+      <div class="flex justify-end mb-4">
+        <Btn
+          :class="canEdit ? '' : 'pointer-events-none opacity-60'"
+          @click="onclickAddOption"
+          :icon="PlusCircleIcon"
+          secondary
+          sm
+          >{{ t("Buttons.AnswerOption") }}</Btn
+        >
+      </div>
     </form>
     <InputBtn
       :loading="form.submitting"
@@ -221,10 +219,7 @@ export default defineComponent({
       }
 
       if (!isAllowed) {
-        openSnackbar(
-          "error",
-          "Error.FillCurrentOption"
-        );
+        openSnackbar("error", "Error.FillCurrentOption");
         return;
       }
 
@@ -366,11 +361,23 @@ export default defineComponent({
           return openSnackbar("error", "Error.OptionsCannotBeSame");
         for (let i = 0; i < options.value.length; i++) {
           if (options.value[i].answer.length > 256) {
-            return openSnackbar("error", t("Error.CannotHaveMoreCharacters", { input: t("Inputs.AnswerOption"), max: 256 }));
+            return openSnackbar(
+              "error",
+              t("Error.CannotHaveMoreCharacters", {
+                input: t("Inputs.AnswerOption"),
+                max: 256,
+              })
+            );
           }
         }
         if (form.question.value.length > 4096) {
-          return openSnackbar("error", t("Error.CannotHaveMoreCharacters", { input: t("Inputs.Question"), max: 4096 }));
+          return openSnackbar(
+            "error",
+            t("Error.CannotHaveMoreCharacters", {
+              input: t("Inputs.Question"),
+              max: 4096,
+            })
+          );
         }
         if (form.xp.value < 1) {
           return openSnackbar("error", "Error.XPValueCannotBeLessThanOne");
