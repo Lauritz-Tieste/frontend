@@ -22,14 +22,31 @@
         :rules="form.question.rules"
       />
 
-      <Btn
-        :class="canEdit ? '' : 'pointer-events-none opacity-60'"
-        @click="onclickAddOption"
-        class="w-fit self-end"
-        :icon="PlusCircleIcon"
-        secondary
-        >{{ t("Buttons.AnswerOption") }}</Btn
-      >
+      <div class="md:flex justify-end items-center md:gap-4">
+        <div class="flex flex-col pb-6">
+          <p class="text-body-2 text-body font-body mb-2">
+            Neue Antwortoption hinzufügen
+          </p>
+          <Btn
+            :class="canEdit ? '' : 'pointer-events-none opacity-60'"
+            @click="onclickAddOption"
+            :icon="PlusCircleIcon"
+            secondary
+            >{{ t("Buttons.AnswerOption") }}</Btn
+          >
+        </div>
+        <Input
+          label="XP for the Quiz"
+          placeholder="XP for the Quiz"
+          v-model="form.xp.value"
+          :class="canEdit ? '' : 'pointer-events-none opacity-60'"
+          @valid="form.xp.valid = $event"
+          :rules="form.xp.rules"
+          type="number"
+        />
+
+        <hr class="mb-4" />
+      </div>
 
       <article
         :class="canEdit ? '' : 'pointer-events-none opacity-60'"
@@ -101,6 +118,8 @@ export default defineComponent({
     // ============================================================= refs
     const refForm = ref<HTMLFormElement | null>(null);
 
+    const defaultQuestionXP = 5;
+
     const canEdit = computed(() => {
       if (props.data != null) {
         if (user.value?.admin) {
@@ -120,6 +139,11 @@ export default defineComponent({
         rules: [(v: string) => !!v || "Error.InputEmpty_Inputs.Question"],
       },
       single_choice: { value: false, valid: true },
+      xp: {
+        valid: false,
+        value: defaultQuestionXP,
+        rules: [(v: string) => !!v || "Error.InputEmpty_Inputs.XP"],
+      },
 
       submitting: false,
       validate: () => {
@@ -248,6 +272,7 @@ export default defineComponent({
       if (!!!data) return;
       form.question.value = data.question ?? "";
       form.question.valid = !!form.question.value;
+      form.xp.value = data.xp ?? defaultQuestionXP;
 
       if (data?.single_choice) {
         selectedQuestionType.value = "Single Choice";
@@ -347,6 +372,9 @@ export default defineComponent({
         if (form.question.value.length > 4096) {
           return openSnackbar("error", t("Error.CannotHaveMoreCharacters", { input: t("Inputs.Question"), max: 4096 }));
         }
+        if (form.xp.value < 1) {
+          return openSnackbar("error", "Error.XPValueCannotBeLessThanOne");
+        }
         if (checkIsSingleChoice(options.value)) {
           form.single_choice.value = true;
         } else {
@@ -370,7 +398,7 @@ export default defineComponent({
         answers: form.body().answers,
         question: form.body().question,
         coins: 0,
-        xp: 5,
+        xp: parseInt(form.body().xp),
         single_choice: form.body().single_choice,
       });
       form.submitting = false;
@@ -408,6 +436,7 @@ export default defineComponent({
           answers: form.body().answers,
           question: form.body().question,
           single_choice: form.body().single_choice,
+          xp: form.body().xp,
         }
       );
       form.submitting = false;
