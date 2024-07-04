@@ -97,7 +97,7 @@ export default {
         props.subtask.task_id,
         props.subtask.id,
         {
-        rating: feedback.value,
+          rating: feedback.value,
         }
       );
       setLoading(false);
