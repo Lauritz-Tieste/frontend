@@ -34,7 +34,12 @@
 					@click="onclickToggleActive"
 				></object> -->
 
-        <img :src="icon" class="cursor-pointer" v-if="node && node.icon" :alt="t('AltAttributes.CourseIcon')" />
+        <img
+          :src="icon"
+          class="cursor-pointer"
+          v-if="node && node.icon"
+          :alt="t('AltAttributes.CourseIcon')"
+          draggable="false" />
       </foreignObject>
     </g>
 
@@ -170,6 +175,9 @@ export default {
 </script>
 
 <style scoped>
+img {
+  pointer-events: none;
+}
 .transformation {
   @apply origin-center transition-all duration-500 ease-in-out;
 }
