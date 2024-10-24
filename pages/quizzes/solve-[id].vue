@@ -3,7 +3,7 @@
     <main
       class="h-full overflow-hidden container pt-card pb-card mt-card-sm grid md:grid-cols-[400px_minmax(0,1fr)] gap-y-card gap-x-container items-start"
     >
-      <div class="">
+      <div>
         <div class="py-2 px-4 md:py-3 md:px-6 bg-secondary mb-8 style-box">
           <template v-for="(path, i) of breadcrumbs" :key="i">
             <NuxtLink
@@ -23,11 +23,14 @@
           </template>
         </div>
 
-        <InputButtonToggle
-          :mobileResponsive="false"
+        <div class="flex justify-center w-full">
+          <InputButtonToggle
+          :mobileResponsive="true"
           v-model="selectedOption"
           :buttonOptions="buttonOptions"
+          class="w-full"
         />
+        </div>
       </div>
 
       <FormQuizAnswer
@@ -41,14 +44,27 @@
         class="row-span-2 md:mt-48"
       />
       <div>
-        <p class="mb-3 text-xs pl-2 flex justify-between" v-if="!!arrayOfSubtasks.length">
-          <div v-if="(selectedOption == 1 && quizzesToShow?.lenght > 0) || selectedOption == 0">
-            <span class="text-accent"> {{ t("Headings.Total") }} </span>:
+        <p class="mb-3 text-xs pl-2 flex justify-between" v-if="!!arrayOfSubtasks.length > 0 && !!quizzesToShow?.length > 0">
+          <div v-if="selectedOption === 0">
+            <span class="text-accent"> {{ t("Headings.SolvedQuizzes") }} </span>:
+            {{
+              t("Headings.AmountSolvedQuizzes", {
+                amount: arrayOfSubtasks.filter((quiz: any) => !quiz.solved).length,
+                total: arrayOfSubtasks?.length
+              })
+            }}
+          </div>
+          <div v-else-if="selectedOption === 1">
+            <span class="text-accent"> {{ t("Headings.UnsolvedQuizzes") }} </span>:
             {{ quizzesToShow?.length }}
           </div>
-          <div class="mr-4" v-if="selectedOption == 0">
-            <span class="text-accent">{{ t("Headings.OfWhichUnsolved") }}</span>:
-            {{ arrayOfSubtasks.filter((quiz: any) => !quiz.solved).length }}
+          <div v-else-if="selectedOption === 2">
+            <span class="text-accent"> {{ t("Headings.SolvedQuizzes") }} </span>:
+            {{ quizzesToShow?.length }}
+          </div>
+          <div v-else-if="selectedOption === 3">
+            <span class="text-accent"> {{ t("Headings.OwnQuizzes") }} </span>:
+            {{ quizzesToShow?.length }}
           </div>
         </p>
         <aside class="p-2 grid max-h-[600px] h-fit pb-44 overflow-auto gap-4">
@@ -64,7 +80,7 @@
                 :class="
                   quiz?.id == selectedQuiz?.id ? 'border border-accent' : ''
                 "
-                v-for="(quiz, i) of quizzesToShow"
+                v-for="(quiz, i) of sortQuizzes(quizzesToShow)"
                 :key="i"
                 full
                 :data="quiz"
@@ -121,6 +137,8 @@ export default defineComponent({
     const buttonOptions = [
       { name: "Buttons.All" },
       { name: "Buttons.UnSolved" },
+      { name: "Buttons.Solved" },
+      { name: "Buttons.Own" },
     ];
     const id: any = computed(() => {
       return route?.params?.id ?? "";
@@ -298,21 +316,50 @@ export default defineComponent({
       scroolToView();
     }
 
-    watch(
-      () => selectedOption.value,
-      (newValue, oldValue) => {
-        if (newValue == 0) {
+    function sortQuizzes() {
+      return quizzesToShow.value
+        .sort((a, b) => {
+          const aSolved = a.solved;
+          const bSolved = b.solved;
+          const aCreatedByMe = a.creator === user.value?.id;
+          const bCreatedByMe = b.creator === user.value?.id;
+
+          // First, sort by whether the task is created by me (tasks not created by me come first)
+          if (aCreatedByMe !== bCreatedByMe) {
+            return aCreatedByMe ? 1 : -1; // tasks created by me come last
+          }
+
+          // If both are either created by me or not, sort by solved status (unsolved tasks come first)
+          if (aSolved !== bSolved) {
+            return aSolved ? 1 : -1; // unsolved tasks come first
+          }
+
+          return 0; // Maintain original order if all criteria are the same
+        });
+    }
+
+    watch(selectedOption, (selectedOptionValue) => {
+      switch (selectedOptionValue) {
+        case 0: // All
           quizzesToShow.value = arrayOfSubtasks.value;
-        } else if (newValue == 1) {
-          quizzesToShow.value = [];
-          arrayOfSubtasks.value.forEach((element: any) => {
-            if (!element.solved && element.creator != user.value?.id) {
-              quizzesToShow.value.push(element);
-            }
-          });
-        }
+          break;
+        case 1: // Unsolved
+          quizzesToShow.value = arrayOfSubtasks.value.filter(
+            (quiz) => !quiz.solved && quiz.creator !== user.value?.id
+          );
+          break;
+        case 2: // Solved
+          quizzesToShow.value = arrayOfSubtasks.value.filter(
+            (quiz) => quiz.solved && quiz.creator !== user.value?.id
+          );
+          break;
+        case 3: // Own
+          quizzesToShow.value = arrayOfSubtasks.value.filter(
+            (quiz) => quiz.creator === user.value?.id
+          );
+          break;
       }
-    );
+    });
 
     function scroolToView() {
       setTimeout(() => {
@@ -347,6 +394,7 @@ export default defineComponent({
       quizzesToShow,
       breadcrumbs,
       querySubTaskId,
+      sortQuizzes,
     };
   },
 });
