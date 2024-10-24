@@ -314,24 +314,24 @@ export default defineComponent({
 
     watch(selectedOption, (selectedOptionValue) => {
       switch (selectedOptionValue) {
-        case 0: // All
-          quizzesToShow.value = arrayOfSubtasks.value;
-          break;
-        case 1: // Unsolved
-          quizzesToShow.value = arrayOfSubtasks.value.filter(
-            (quiz) => !quiz.solved && quiz.creator !== user.value?.id
-          );
-          break;
-        case 2: // Solved
-          quizzesToShow.value = arrayOfSubtasks.value.filter(
-            (quiz) => quiz.solved && quiz.creator !== user.value?.id
-          );
-          break;
-        case 3: // Own
-          quizzesToShow.value = arrayOfSubtasks.value.filter(
-            (quiz) => quiz.creator === user.value?.id
-          );
-          break;
+      case 0: // All
+        quizzesToShow.value = arrayOfSubtasks.value;
+        break;
+      case 1: // Unsolved
+        quizzesToShow.value = arrayOfSubtasks.value.filter(
+          (quiz) => !quiz.solved && quiz.creator !== user.value?.id
+        );
+        break;
+      case 2: // Solved
+        quizzesToShow.value = arrayOfSubtasks.value.filter(
+          (quiz) => quiz.solved && quiz.creator !== user.value?.id
+        );
+        break;
+      case 3: // Own
+        quizzesToShow.value = arrayOfSubtasks.value.filter(
+          (quiz) => quiz.creator === user.value?.id
+        );
+        break;
       }
     });
 
