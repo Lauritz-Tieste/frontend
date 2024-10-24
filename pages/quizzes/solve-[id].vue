@@ -1,108 +1,82 @@
 <template>
   <div>
-    <main
-      class="h-full overflow-hidden container pt-card pb-card mt-card-sm grid md:grid-cols-[400px_minmax(0,1fr)] gap-y-card gap-x-container items-start"
-    >
-      <div>
-        <div class="py-2 px-4 md:py-3 md:px-6 bg-secondary mb-8 style-box">
-          <template v-for="(path, i) of breadcrumbs" :key="i">
-            <NuxtLink
-              v-if="path.to"
-              :to="path.to"
-              class="inline-block text-body-2"
-            >
-              {{ t(path.label) }}
-            </NuxtLink>
-            <h1 v-else class="text-heading-2 capitalize inline-block">
-              {{ t(path.label) }}
-            </h1>
+    <main class="container pb-card mt-card-sm">
+      <div class="flex justify-center">
+        <div class="flex flex-col items-center max-w-max mb-8">
+          <div class="py-2 px-4 md:py-3 md:px-6 bg-secondary mb-4 style-box w-full flex justify-center items-center">
+            <template v-for="(path, i) of breadcrumbs" :key="i">
+              <NuxtLink v-if="path.to" :to="path.to" class="inline-block text-body-2">
+                {{ t(path.label) }}
+              </NuxtLink>
+              <h1 v-else class="text-heading-2 capitalize inline-block">
+                {{ t(path.label) }}
+              </h1>
+              <span v-if="i < breadcrumbs.length - 1" class="text-accent mx-3">
+                /
+              </span>
+            </template>
+          </div>
 
-            <span v-if="i < breadcrumbs.length - 1" class="text-accent mx-3">
-              /
-            </span>
-          </template>
-        </div>
-
-        <div class="flex justify-center w-full">
-          <InputButtonToggle
-          :mobileResponsive="true"
-          v-model="selectedOption"
-          :buttonOptions="buttonOptions"
-          class="w-full"
-        />
+          <div class="flex justify-center w-full">
+            <InputButtonToggle :mobileResponsive="true" v-model="selectedOption" :buttonOptions="buttonOptions"
+              class="w-full" />
+          </div>
         </div>
       </div>
 
-      <FormQuizAnswer
-        :amount-questions-left="quizzesToShow.filter((quiz: any) => !quiz.solved).length"
-        v-if="quizzesToShow.length || loading"
-        :data="selectedQuiz ?? quizzesToShow[0]"
-        @solved="setSolvedLocally($event)"
-        @rated="setRatedLocally($event)"
-        @nextQuestion="nextQuestion($event)"
-        @updateQuestion="updateQuestion($event)"
-        class="row-span-2 md:mt-48"
-      />
-      <div>
-        <p class="mb-3 text-xs pl-2 flex justify-between" v-if="!!arrayOfSubtasks.length > 0 && !!quizzesToShow?.length > 0">
-          <div v-if="selectedOption === 0">
-            <span class="text-accent"> {{ t("Headings.SolvedQuizzes") }} </span>:
+      <div class="flex max-md:flex-col max-md:items-center">
+        <div class="lg:w-2/5 md:w-3/5 w-full">
+          <p class="mb-2 text-xs flex justify-center md:pt-8"
+            v-if="!!arrayOfSubtasks.length && !!quizzesToShow?.length">
+          <p v-if="selectedOption === 0">
+            <span class="text-accent">{{ t("Headings.SolvedQuizzes") }}</span>:
             {{
               t("Headings.AmountSolvedQuizzes", {
                 amount: arrayOfSubtasks.filter((quiz: any) => !quiz.solved).length,
                 total: arrayOfSubtasks?.length
               })
             }}
-          </div>
-          <div v-else-if="selectedOption === 1">
-            <span class="text-accent"> {{ t("Headings.UnsolvedQuizzes") }} </span>:
+          </p>
+          <p v-else-if="selectedOption === 1">
+            <span class="text-accent">{{ t("Headings.UnsolvedQuizzes") }}</span>:
             {{ quizzesToShow?.length }}
-          </div>
-          <div v-else-if="selectedOption === 2">
-            <span class="text-accent"> {{ t("Headings.SolvedQuizzes") }} </span>:
+          </p>
+          <p v-else-if="selectedOption === 2">
+            <span class="text-accent">{{ t("Headings.SolvedQuizzes") }}</span>:
             {{ quizzesToShow?.length }}
-          </div>
-          <div v-else-if="selectedOption === 3">
-            <span class="text-accent"> {{ t("Headings.OwnQuizzes") }} </span>:
+          </p>
+          <p v-else-if="selectedOption === 3">
+            <span class="text-accent">{{ t("Headings.OwnQuizzes") }}</span>:
             {{ quizzesToShow?.length }}
-          </div>
-        </p>
-        <aside class="p-2 grid max-h-[600px] h-fit pb-44 overflow-auto gap-4">
-          <template v-if="loading">
-            <QuizCardSkeleton v-for="n in 9" :key="n" class="w-full" />
-          </template>
+          </p>
+          </p>
+          <aside class="p-2 grid max-h-[600px] h-fit overflow-auto gap-4" v-if="quizzesToShow.length">
+            <template v-if="loading">
+              <QuizCardSkeleton v-for="n in 9" :key="n" class="w-full" />
+            </template>
 
-          <template v-else-if="quizzesToShow && quizzesToShow.length">
-            <div class="max-h-fit grid gap-card">
-              <QuizCard
-                :id="querySubTaskId == quiz.id ? querySubTaskId : 'none'"
-                class="max-h-fit"
-                :class="
-                  quiz?.id == selectedQuiz?.id ? 'border border-accent' : ''
-                "
-                v-for="(quiz, i) of sortQuizzes(quizzesToShow)"
-                :key="i"
-                full
-                :data="quiz"
-                @click="solveThis(quiz)"
-              />
-            </div>
-          </template>
-        </aside>
+            <template v-else-if="quizzesToShow && quizzesToShow.length">
+              <div class="max-h-fit grid gap-card">
+                <QuizCard :id="querySubTaskId == quiz.id ? querySubTaskId : 'none'" class="max-h-fit" :class="quiz?.id == selectedQuiz?.id ? 'border border-accent' : ''
+                  " v-for="(quiz, i) of sortQuizzes(quizzesToShow)" :key="i" full :data="quiz"
+                  @click="solveThis(quiz)" />
+              </div>
+            </template>
+          </aside>
+        </div>
+        <FormQuizAnswer :amount-questions-left="quizzesToShow.filter((quiz: any) => !quiz.solved).length"
+          v-if="quizzesToShow.length || loading" :data="selectedQuiz ?? quizzesToShow[0]"
+          @solved="setSolvedLocally($event)" @rated="setRatedLocally($event)" @nextQuestion="nextQuestion($event)"
+          @updateQuestion="updateQuestion($event)" class="lg:w-3/5 md:w-2/5 w-full" />
       </div>
     </main>
-    <p
-      v-if="!loading && !quizzesToShow.length && arrayOfSubtasks.filter((quiz: any) => !quiz.solved).length == 0"
-      class="text-center w-full mb-20 text-xl"
-    >
+    <p v-if="!loading && !quizzesToShow.length && arrayOfSubtasks.filter((quiz: any) => !quiz.solved).length == 0"
+      class="text-center w-full mb-20 text-xl">
       {{
         t("Headings.AllQuestionsSolved")
       }}
     </p>
-    <p
-      v-else-if="!loading && !quizzesToShow.length"
-      class="text-center w-full mb-20 text-xl"
-    >
+    <p v-else-if="!loading && !quizzesToShow.length" class="text-center w-full mb-20 text-xl">
       {{
         t("Headings.EmptyQuizForThis", {
           placeholder: t(notFoundFor),
